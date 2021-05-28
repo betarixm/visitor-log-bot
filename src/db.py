@@ -33,7 +33,10 @@ class Database:
             if r[0] not in current:
                 current[r[0]] = {}
             current[r[0]]["display_name"], current[r[0]][r[2]] = r[1], int(r[3])
+
             if ("in" in current[r[0]] and "out" in current[r[0]]) and (current[r[0]]["in"] < current[r[0]]["out"]):
+                del current[r[0]]
+            elif "out" in current[r[0]] and "in" not in current[r[0]]:
                 del current[r[0]]
 
         return current
